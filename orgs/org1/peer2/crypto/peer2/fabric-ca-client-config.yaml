@@ -23,7 +23,7 @@ csr:
       O: Hyperledger
       OU: Fabric
   hosts:
-    - d8fee1efd776
+    - peer2-org1
 
 id:
   name:

@@ -17,13 +17,13 @@ csr:
     size: 256
   serialnumber:
   names:
-    - C: TW
+    - C: US
       ST: North Carolina
       L:
       O: Hyperledger
       OU: Fabric
   hosts:
-    - 3d0875ece232
+    - peer1-org1
 
 id:
   name:

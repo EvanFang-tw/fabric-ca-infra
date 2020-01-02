@@ -18,3 +18,10 @@
 ./components/org0/scripts/enroll-admin.sh
 ./components/org0/scripts/register.sh
 ```
+3. Org1 CA
+```sh
+./scripts/start-rca-org1.sh
+
+./components/org1/scripts/enroll-admin.sh
+./components/org1/scripts/register.sh
+```

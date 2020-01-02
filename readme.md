@@ -41,5 +41,12 @@
 cp ca/org1/data/crypto/ca-cert.pem orgs/org1/peer1/crypto/ca
 
 # 2. Enroll
-org1/peer1/enroll.sh
+orgs/org1/peer1/enroll.sh
+
+# peer2
+# 1. Copy root ca cert
+cp ca/org1/data/crypto/ca-cert.pem orgs/org1/peer2/crypto/ca
+
+# 2. Enroll
+orgs/org1/peer2/enroll.sh
 ```

@@ -25,3 +25,11 @@
 ./components/org1/scripts/enroll-admin.sh
 ./components/org1/scripts/register.sh
 ```
+
+4. Org2 CA
+```sh
+./scripts/start-rca-org2.sh
+
+./components/org2/scripts/enroll-admin.sh
+./components/org2/scripts/register.sh
+```

@@ -8,7 +8,7 @@ services:
   ca-tls:
     container_name: ca-tls
     image: hyperledger/fabric-ca:1.4.4
-    command: sh -c 'fabric-ca-server start -d -b tls-ca-admin:tls-ca-adminpw --port 7052'
+    command: sh -c 'fabric-ca-server start -d -b tls-ca-admin:tls-ca-adminpw'
     environment:
       - FABRIC_CA_SERVER_HOME=/tmp/hyperledger/fabric-ca/crypto
       - FABRIC_CA_SERVER_TLS_ENABLED=true
@@ -23,4 +23,4 @@ services:
     networks:
       - ca_net
     ports:
-      - 7052:7052
+      - 7052:7054

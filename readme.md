@@ -33,3 +33,13 @@
 ./components/org2/scripts/enroll-admin.sh
 ./components/org2/scripts/register.sh
 ```
+
+5. Enroll org1 peers
+```sh
+# peer1
+# 1. Copy root ca cert
+cp ca/org1/data/crypto/ca-cert.pem orgs/org1/peer1/crypto/ca
+
+# 2. Enroll
+org1/peer1/enroll.sh
+```

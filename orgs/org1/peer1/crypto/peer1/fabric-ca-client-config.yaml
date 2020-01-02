@@ -1,0 +1,51 @@
+
+url: https://rca-org1:7054
+
+mspdir: msp
+
+
+tls:
+  certfiles:
+  client:
+    certfile:
+    keyfile:
+
+csr:
+  cn: peer1-org1
+  keyrequest:
+    algo: ecdsa
+    size: 256
+  serialnumber:
+  names:
+    - C: TW
+      ST: North Carolina
+      L:
+      O: Hyperledger
+      OU: Fabric
+  hosts:
+    - 3d0875ece232
+
+id:
+  name:
+  type:
+  affiliation:
+  maxenrollments: 0
+  attributes:
+   # - name:
+   #   value:
+
+
+enrollment:
+  profile:
+  label:
+
+caname:
+
+bccsp:
+    default: SW
+    sw:
+        hash: SHA2
+        security: 256
+        filekeystore:
+            # The directory used for the software file-based keystore
+            keystore: msp/keystore

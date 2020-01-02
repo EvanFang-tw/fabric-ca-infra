@@ -67,3 +67,13 @@ orgs/org1/admin/enroll-msp.sh
 cp orgs/org1/admin/crypto/admin/msp/signcerts/cert.pem orgs/org1/peer1/crypto/peer1/msp/admincerts/org1-admin-cert.pem
 cp orgs/org1/admin/crypto/admin/msp/signcerts/cert.pem orgs/org1/peer2/crypto/peer2/msp/admincerts/org1-admin-cert.pem
 ```
+> If you foget to make admincerts folder, you will get this error message: `Cannot run peer because error when setting up MSP of type bccsp from directory /etc/hyperledger/fabric/msp: administrators must be declared when no admin ou classification is set`
+
+7. Start org1 peers
+```sh
+# 1. peer1
+./scripts/start-org1-peer1.sh
+
+# 2. peer2
+./scripts/start-org1-peer2.sh
+```

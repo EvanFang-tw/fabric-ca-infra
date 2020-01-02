@@ -54,3 +54,16 @@ cp ca/ca-tls/data/crypto/ca-cert.pem orgs/org1/peer2/crypto/tls-ca
 orgs/org1/peer2/enroll-msp.sh
 orgs/org1/peer2/enroll-tls.sh
 ```
+
+6. Enroll or1 admin
+```sh
+# 1. Copy root ca cert and tls ca cert
+cp ca/org1/data/crypto/ca-cert.pem orgs/org1/admin/crypto/ca
+
+# 2. Enroll msp
+orgs/org1/admin/enroll-msp.sh
+
+# 3. Copy admin cert to peer's msp/admincerts folder
+cp orgs/org1/admin/crypto/admin/msp/signcerts/cert.pem orgs/org1/peer1/crypto/peer1/msp/admincerts/org1-admin-cert.pem
+cp orgs/org1/admin/crypto/admin/msp/signcerts/cert.pem orgs/org1/peer2/crypto/peer2/msp/admincerts/org1-admin-cert.pem
+```

@@ -21,4 +21,6 @@ hyperledger/fabric-ca:1.4.4 \
 /bin/bash -c \
 "fabric-ca-client enroll -d -u https://peer2-org1:peer2PW@rca-org1:7054; chmod -R 777 /tmp/hyperledger/fabric-ca/peer2"
 
+mkdir $(pwd)/crypto/peer2/msp/admincerts
+
 popd

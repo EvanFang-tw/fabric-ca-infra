@@ -1,1 +1,0 @@
-Put organization CA cert file in this folder and name it as `ca-cert.pem`.

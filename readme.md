@@ -46,9 +46,11 @@ orgs/org1/peer1/enroll-msp.sh
 orgs/org1/peer1/enroll-tls.sh
 
 # peer2
-# 1. Copy root ca cert
+# 1. Copy root ca cert and tls ca cert
 cp ca/org1/data/crypto/ca-cert.pem orgs/org1/peer2/crypto/ca
+cp ca/ca-tls/data/crypto/ca-cert.pem orgs/org1/peer2/crypto/tls-ca
 
-# 2. Enroll
-orgs/org1/peer2/enroll.sh
+# 2. Enroll msp and tls
+orgs/org1/peer2/enroll-msp.sh
+orgs/org1/peer2/enroll-tls.sh
 ```

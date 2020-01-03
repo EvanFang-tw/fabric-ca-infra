@@ -121,3 +121,12 @@ cp orgs/org2/admin/crypto/admin/msp/signcerts/cert.pem orgs/org2/peer2/crypto/pe
 # 2. peer2
 ./scripts/start-org2-peer2.sh
 ```
+
+11. Enroll orderer
+```sh
+cp ca/org0/data/crypto/ca-cert.pem orgs/org0/orderer1/crypto/ca
+cp ca/ca-tls/data/crypto/ca-cert.pem orgs/org0/orderer1/crypto/tls-ca
+
+orgs/org0/orderer1/enroll-msp.sh
+orgs/org0/orderer1/enroll-tls.sh
+```

@@ -55,7 +55,7 @@ orgs/org1/peer2/enroll-msp.sh
 orgs/org1/peer2/enroll-tls.sh
 ```
 
-6. Enroll or1 admin
+6. Enroll org1 admin
 ```sh
 # 1. Copy root ca cert and tls ca cert
 cp ca/org1/data/crypto/ca-cert.pem orgs/org1/admin/crypto/ca

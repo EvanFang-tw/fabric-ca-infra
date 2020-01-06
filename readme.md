@@ -164,3 +164,12 @@ cp orgs/org2/peer1/crypto/peer1/msp/cacerts/rca-org2-7054.pem artifacts/msp/org2
 cp orgs/org2/peer1/crypto/peer1/tls/cacerts/ca-tls.pem artifacts/msp/org2/tlscacerts/
 ```
 > Command above will create msp folder structure and copy certs to `artifacts/msp` folder.
+
+13. Start orderer
+```sh
+# Copy genesis block to orderer's artifacts folder
+cp ./artifacts/blocks/genesis.block orgs/org0/orderer1/artifacts/
+
+# Start orderer1-org0
+docker-compose -f orgs/org0/orderer1/docker-compose.yml up -d
+```

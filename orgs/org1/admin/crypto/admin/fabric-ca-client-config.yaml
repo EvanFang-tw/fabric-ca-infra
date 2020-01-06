@@ -23,7 +23,7 @@ csr:
       O: Hyperledger
       OU: Fabric
   hosts:
-    - b323265a16c2
+    - admin-org1
 
 id:
   name:

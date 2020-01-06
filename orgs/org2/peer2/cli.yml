@@ -33,7 +33,6 @@ services:
         - ./crypto/peer2/tls:/tmp/hyperledger/org2/peer2/tls
         # Admin msp
         - ../admin/crypto/admin/msp:/tmp/hyperledger/org2/peer2/admin/msp
-        - ./crypto/peer2/msp/admincerts:/tmp/hyperledger/org2/peer2/admin/msp/admincerts
         # Artifacts
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     networks:

@@ -22,4 +22,13 @@ hyperledger/fabric-ca:1.4.4 \
 /bin/bash -c \
 "fabric-ca-client enroll -d -u https://admin-org2:org2AdminPW@rca-org2:7054; chmod -R 777 /tmp/hyperledger/fabric-ca/admin"
 
+# Create admincert folder in msp
+ADMINCERT_DIR=$(pwd)/crypto/admin/msp/admincerts
+if [ ! -d $ADMINCERT_DIR ]; then
+  mkdir $ADMINCERT_DIR
+fi
+
+# Copy cert from signcerts to admincerts
+cp $(pwd)/crypto/admin/msp/signcerts/cert.pem $ADMINCERT_DIR
+
 popd

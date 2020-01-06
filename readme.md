@@ -188,3 +188,16 @@ docker-compose -f ./orgs/org1/peer2/cli.yml up -d
 docker-compose -f ./orgs/org2/peer1/cli.yml up -d
 docker-compose -f ./orgs/org2/peer2/cli.yml up -d
 ```
+
+15. Create & join channel
+```sh
+# Org1
+docker exec -it cli-peer1-org1 bash
+
+peer channel create -c mychannel \
+-f ./channel-artifacts/channel.tx \
+-o orderer1-org0:7050 \
+--outputBlock ./channel-artifacts/mychannel.block \
+--tls \
+--cafile /tmp/hyperledger/org1/peer1/tls/cacerts/ca-tls.pem
+```

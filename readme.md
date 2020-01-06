@@ -227,3 +227,29 @@ peer channel join -b ./channel-artifacts/mychannel.block
 docker exec -it cli-peer2-org2 bash
 peer channel join -b ./channel-artifacts/mychannel.block
 ```
+
+17. Install chaincode
+```sh
+docker exec -it cli-peer1-org1 bash
+# Install sample chaincode
+peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc
+
+docker exec cli-peer2-org1 peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc
+docker exec cli-peer1-org2 peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc
+docker exec cli-peer2-org2 peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc
+```
+
+18. Intantiate chaincode
+```sh
+docker exec -it cli-peer1-org1 bash
+
+peer chaincode instantiate \
+-C mychannel \
+-n sacc \
+-v 1.0 \
+-o orderer1-org0:7050 \
+--tls \
+--cafile /tmp/hyperledger/org1/peer1/tls/cacerts/ca-tls.pem \
+-c '{"Args":["a","100"]}' \
+-P "OR ('org1MSP.member','org2MSP.member')"
+```

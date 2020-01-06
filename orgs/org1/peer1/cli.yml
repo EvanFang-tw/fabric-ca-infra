@@ -28,7 +28,7 @@ services:
     volumes:
         - /var/run/:/host/var/run/
         # Chaincode
-        # - ./../chaincode/:/opt/gopath/src/github.com/chaincode
+        - ../../../chaincode:/opt/gopath/src/github.com/chaincode
         # TLS
         - ./crypto/peer1/tls:/tmp/hyperledger/org1/peer1/tls
         # Admin msp

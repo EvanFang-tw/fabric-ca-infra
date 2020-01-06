@@ -174,13 +174,17 @@ cp ./artifacts/blocks/genesis.block orgs/org0/orderer1/artifacts/
 docker-compose -f orgs/org0/orderer1/docker-compose.yml up -d
 ```
 
-14. Start org1 cli
+14. Start cli
 ```sh
 # Copy channel artifacts
 cp ./artifacts/blocks/channel.tx ./orgs/org1/peer1/channel-artifacts/
 cp ./artifacts/blocks/channel.tx ./orgs/org1/peer2/channel-artifacts/
+cp ./artifacts/blocks/channel.tx ./orgs/org2/peer1/channel-artifacts/
+cp ./artifacts/blocks/channel.tx ./orgs/org2/peer2/channel-artifacts/
 
-# Start peer1-org1, peer2-org1 cli
+# Start cli
 docker-compose -f ./orgs/org1/peer1/cli.yml up -d
 docker-compose -f ./orgs/org1/peer2/cli.yml up -d
+docker-compose -f ./orgs/org2/peer1/cli.yml up -d
+docker-compose -f ./orgs/org2/peer2/cli.yml up -d
 ```

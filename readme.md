@@ -145,18 +145,22 @@ cp orgs/org0/admin/crypto/admin/msp/signcerts/cert.pem orgs/org0/orderer1/crypto
 
 12. Copy msps to artifacts folder
 ```sh
-# org0 msp
+# If msp folder structure has not created yet, run command below first
+./artifacts/generate-msp-folders.sh
+
+# Copy org0 msp: admincerts, cacerts, tlscacerts
 cp orgs/org0/orderer1/crypto/orderer1/msp/admincerts/org0-admin-cert.pem artifacts/msp/org0/admincerts/
 cp orgs/org0/orderer1/crypto/orderer1/msp/cacerts/rca-org0-7054.pem artifacts/msp/org0/cacerts/
 cp orgs/org0/orderer1/crypto/orderer1/tls/cacerts/ca-tls.pem artifacts/msp/org0/tlscacerts/
 
-# org1 msp
+# Copy org1 msp: admincerts, cacerts, tlscacerts
 cp orgs/org1/peer1/crypto/peer1/msp/admincerts/org1-admin-cert.pem artifacts/msp/org1/admincerts/
 cp orgs/org1/peer1/crypto/peer1/msp/cacerts/rca-org1-7054.pem artifacts/msp/org1/cacerts/
 cp orgs/org1/peer1/crypto/peer1/tls/cacerts/ca-tls.pem artifacts/msp/org1/tlscacerts/
 
-# org2 msp
+# Copy org2 msp: admincerts, cacerts, tlscacerts
 cp orgs/org2/peer1/crypto/peer1/msp/admincerts/org2-admin-cert.pem artifacts/msp/org2/admincerts/
 cp orgs/org2/peer1/crypto/peer1/msp/cacerts/rca-org2-7054.pem artifacts/msp/org2/cacerts/
 cp orgs/org2/peer1/crypto/peer1/tls/cacerts/ca-tls.pem artifacts/msp/org2/tlscacerts/
 ```
+> Command above will create msp folder structure and copy certs to `artifacts/msp` folder.

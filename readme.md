@@ -217,23 +217,15 @@ cp orgs/org1/peer1/channel-artifacts/mychannel.block orgs/org2/peer2/channel-art
 ```
 
 ```sh
-# Join peer2-org1 to channel
-docker exec -it cli-peer2-org1 bash
-peer channel join -b ./channel-artifacts/mychannel.block
-
-docker exec -it cli-peer1-org2 bash
-peer channel join -b ./channel-artifacts/mychannel.block
-
-docker exec -it cli-peer2-org2 bash
-peer channel join -b ./channel-artifacts/mychannel.block
+# Join other pees to channel
+docker exec -it cli-peer2-org1 peer channel join -b ./channel-artifacts/mychannel.block
+docker exec -it cli-peer1-org2 peer channel join -b ./channel-artifacts/mychannel.block
+docker exec -it cli-peer2-org2 peer channel join -b ./channel-artifacts/mychannel.block
 ```
 
 17. Install chaincode
 ```sh
-docker exec -it cli-peer1-org1 bash
-# Install sample chaincode
-peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc
-
+docker exec cli-peer1-org1 peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc
 docker exec cli-peer2-org1 peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc
 docker exec cli-peer1-org2 peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc
 docker exec cli-peer2-org2 peer chaincode install -n sacc -v 1.0 -p github.com/chaincode/sacc

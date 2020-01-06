@@ -143,7 +143,7 @@ orgs/org0/admin/enroll-msp.sh
 cp orgs/org0/admin/crypto/admin/msp/signcerts/cert.pem orgs/org0/orderer1/crypto/orderer1/msp/admincerts/org0-admin-cert.pem
 ```
 
-12. Copy msps to artifacts folder
+12. Copy msps to artifacts folder, generate genesis block
 ```sh
 # If msp folder structure has not created yet, run command below first
 ./artifacts/generate-msp-folders.sh
@@ -162,6 +162,9 @@ cp orgs/org1/peer1/crypto/peer1/tls/cacerts/ca-tls.pem artifacts/msp/org1/tlscac
 cp orgs/org2/peer1/crypto/peer1/msp/admincerts/org2-admin-cert.pem artifacts/msp/org2/admincerts/
 cp orgs/org2/peer1/crypto/peer1/msp/cacerts/rca-org2-7054.pem artifacts/msp/org2/cacerts/
 cp orgs/org2/peer1/crypto/peer1/tls/cacerts/ca-tls.pem artifacts/msp/org2/tlscacerts/
+
+# Generate genesis block
+./artifacts/generate-genesis-block.sh
 ```
 > Command above will create msp folder structure and copy certs to `artifacts/msp` folder.
 

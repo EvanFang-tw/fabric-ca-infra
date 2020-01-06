@@ -1,3 +1,8 @@
+```sh
+# Download binaries
+./scripts/bootstrap.sh -d -s -- 1.4.4 1.4.4 0.4.18
+```
+
 0. Prepare
 ```sh
 ./scripts/create-network.sh
@@ -136,4 +141,22 @@ orgs/org0/admin/enroll-msp.sh
 
 # Copy org0 admin signcert to orderer1
 cp orgs/org0/admin/crypto/admin/msp/signcerts/cert.pem orgs/org0/orderer1/crypto/orderer1/msp/admincerts/org0-admin-cert.pem
+```
+
+12. Copy msps to artifacts folder
+```sh
+# org0 msp
+cp orgs/org0/orderer1/crypto/orderer1/msp/admincerts/org0-admin-cert.pem artifacts/msp/org0/admincerts/
+cp orgs/org0/orderer1/crypto/orderer1/msp/cacerts/rca-org0-7054.pem artifacts/msp/org0/cacerts/
+cp orgs/org0/orderer1/crypto/orderer1/tls/cacerts/ca-tls.pem artifacts/msp/org0/tlscacerts/
+
+# org1 msp
+cp orgs/org1/peer1/crypto/peer1/msp/admincerts/org1-admin-cert.pem artifacts/msp/org1/admincerts/
+cp orgs/org1/peer1/crypto/peer1/msp/cacerts/rca-org1-7054.pem artifacts/msp/org1/cacerts/
+cp orgs/org1/peer1/crypto/peer1/tls/cacerts/ca-tls.pem artifacts/msp/org1/tlscacerts/
+
+# org2 msp
+cp orgs/org2/peer1/crypto/peer1/msp/admincerts/org2-admin-cert.pem artifacts/msp/org2/admincerts/
+cp orgs/org2/peer1/crypto/peer1/msp/cacerts/rca-org2-7054.pem artifacts/msp/org2/cacerts/
+cp orgs/org2/peer1/crypto/peer1/tls/cacerts/ca-tls.pem artifacts/msp/org2/tlscacerts/
 ```

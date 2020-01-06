@@ -1,0 +1,228 @@
+
+Organizations:
+    - &org0
+        Name: org0
+        ID: org0MSP
+        MSPDir: msp/org0
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('org0MSP.member')"
+            Writers:
+                Type: Signature
+                Rule: "OR('org0MSP.member')"
+            Admins:
+                Type: Signature
+                Rule: "OR('org0MSP.admin')"
+
+    - &org1
+        Name: org1
+        ID: org1MSP
+        MSPDir: msp/org1
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('org1MSP.admin', 'org1MSP.peer', 'org1MSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('org1MSP.admin', 'org1MSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('org1MSP.admin')"
+        AnchorPeers:
+            - Host: peer1-org1
+              Port: 7051
+
+    - &org2
+        Name: org2
+        ID: org2MSP
+        MSPDir: msp/org2
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('org2MSP.admin', 'org2MSP.peer', 'org2MSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('org2MSP.admin', 'org2MSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('org2MSP.admin')"
+        AnchorPeers:
+            - Host: peer1-org2
+              Port: 9051
+
+Capabilities:
+    Channel: &ChannelCapabilities
+        V1_4_3: true
+        V1_3: false
+        V1_1: false
+    Orderer: &OrdererCapabilities
+        V1_4_2: true
+        V1_1: false
+
+    Application: &ApplicationCapabilities
+        V1_4_2: true
+        V1_3: false
+        V1_2: false
+        V1_1: false
+
+Application: &ApplicationDefaults
+    Organizations:
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+
+    Capabilities:
+        <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+
+    OrdererType: solo
+
+    Addresses:
+        - orderer1-org0:7050
+    BatchTimeout: 2s
+    BatchSize:
+        MaxMessageCount: 10
+        AbsoluteMaxBytes: 99 MB
+        PreferredMaxBytes: 512 KB
+
+    # EtcdRaft:
+    #     Consenters:
+    #         - Host: orderer.example.com
+    #           Port: 7050
+    #           ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+    #           ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+    #         - Host: orderer2.example.com
+    #           Port: 7050
+    #           ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
+    #           ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
+    #         - Host: orderer3.example.com
+    #           Port: 7050
+    #           ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
+    #           ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
+    #         - Host: orderer4.example.com
+    #           Port: 7050
+    #           ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
+    #           ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
+    #         - Host: orderer5.example.com
+    #           Port: 7050
+    #           ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
+    #           ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
+
+
+    Organizations:
+        - *org0
+
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+        BlockValidation:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+
+Channel: &ChannelDefaults
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+
+    Capabilities:
+        <<: *ChannelCapabilities
+
+
+Profiles:
+    TwoOrgsOrdererGenesis:
+        <<: *ChannelDefaults
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *org0
+            Capabilities:
+                <<: *OrdererCapabilities
+        Consortiums:
+            SampleConsortium:
+                Organizations:
+                    - *org1
+                    - *org2
+    TwoOrgsChannel:
+        Consortium: SampleConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *org1
+                - *org2
+            Capabilities:
+                <<: *ApplicationCapabilities
+
+
+    # SampleMultiNodeEtcdRaft:
+    #     <<: *ChannelDefaults
+    #     Capabilities:
+    #         <<: *ChannelCapabilities
+    #     Orderer:
+    #         <<: *OrdererDefaults
+    #         OrdererType: etcdraft
+    #         EtcdRaft:
+    #             Consenters:
+    #             - Host: orderer.example.com
+    #               Port: 7050
+    #               ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+    #               ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+    #             - Host: orderer2.example.com
+    #               Port: 7050
+    #               ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
+    #               ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
+    #             - Host: orderer3.example.com
+    #               Port: 7050
+    #               ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
+    #               ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
+    #             - Host: orderer4.example.com
+    #               Port: 7050
+    #               ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
+    #               ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
+    #             - Host: orderer5.example.com
+    #               Port: 7050
+    #               ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
+    #               ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
+    #         Addresses:
+    #             - orderer.example.com:7050
+    #             - orderer2.example.com:7050
+    #             - orderer3.example.com:7050
+    #             - orderer4.example.com:7050
+    #             - orderer5.example.com:7050
+
+    #         Organizations:
+    #         - *OrdererOrg
+    #         Capabilities:
+    #             <<: *OrdererCapabilities
+    #     Application:
+    #         <<: *ApplicationDefaults
+    #         Organizations:
+    #         - <<: *OrdererOrg
+    #     Consortiums:
+    #         SampleConsortium:
+    #             Organizations:
+    #             - *Org1
+    #             - *Org2

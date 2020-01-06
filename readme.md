@@ -133,5 +133,7 @@ orgs/org0/orderer1/enroll-tls.sh
 # Enroll org0 admin
 cp ca/org0/data/crypto/ca-cert.pem orgs/org0/admin/crypto/ca
 orgs/org0/admin/enroll-msp.sh
+
+# Copy org0 admin signcert to orderer1
 cp orgs/org0/admin/crypto/admin/msp/signcerts/cert.pem orgs/org0/orderer1/crypto/orderer1/msp/admincerts/org0-admin-cert.pem
 ```

@@ -1,15 +1,3 @@
-
-url: https://rca-org0:7054
-
-mspdir: msp
-
-tls:
-  # TLS section for secure socket connection
-  certfiles:
-  client:
-    certfile:
-    keyfile:
-
 csr:
   cn: orderer1-org0
   keyrequest:
@@ -21,30 +9,5 @@ csr:
       ST: North Carolina
       L:
       O: Hyperledger
-      OU: Fabric
   hosts:
     - orderer1-org0
-
-id:
-  name:
-  type:
-  affiliation:
-  maxenrollments: 0
-  attributes:
-   # - name:
-   #   value:
-
-enrollment:
-  profile:
-  label:
-
-caname:
-
-bccsp:
-    default: SW
-    sw:
-        hash: SHA2
-        security: 256
-        filekeystore:
-            # The directory used for the software file-based keystore
-            keystore: msp/keystore

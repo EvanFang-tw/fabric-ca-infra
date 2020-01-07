@@ -2,6 +2,7 @@
 
 docker exec rca-org0 \
 fabric-ca-client register -d --id.name orderer1-org0 --id.secret ordererpw \
+--id.affiliation org0 \
 --id.type orderer \
 -u https://rca-org0:7054
 

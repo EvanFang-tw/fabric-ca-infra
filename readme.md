@@ -244,4 +244,15 @@ peer chaincode instantiate \
 --cafile /tmp/hyperledger/org1/peer1/tls/cacerts/ca-tls.pem \
 -c '{"Args":["a","100"]}' \
 -P "OR ('org1MSP.member','org2MSP.member')"
+
+# Chaincode health check
+peer chaincode query -C mychannel -n sacc -c '{"Args":["get","a"]}'
+
+peer chaincode invoke \
+-o orderer1-org0:7050 \
+--tls true \
+--cafile /tmp/hyperledger/org1/peer1/tls/cacerts/ca-tls.pem \
+-C mychannel \
+-n sacc \
+-c '{"Args":["set","a","1000"]}'
 ```

@@ -1,0 +1,13 @@
+csr:
+  cn: orderer1-org0
+  keyrequest:
+    algo: ecdsa
+    size: 256
+  serialnumber:
+  names:
+    - C: US
+      ST: North Carolina
+      L:
+      O: Hyperledger
+  hosts:
+    - orderer1-org0

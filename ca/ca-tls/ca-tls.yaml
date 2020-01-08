@@ -1,0 +1,29 @@
+version: '2'
+
+networks:
+  ca_net:
+    external: true
+
+services:
+  ca-tls:
+    container_name: ca-tls
+    image: hyperledger/fabric-ca:1.4.4
+    command: sh -c 'fabric-ca-server start -d -b tls-ca-admin:tls-ca-adminpw'
+    environment:
+      # server
+      - FABRIC_CA_SERVER_HOME=/tmp/hyperledger/fabric-ca/crypto
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_CSR_CN=ca-tls
+      - FABRIC_CA_SERVER_CSR_HOSTS=ca-tls
+      - FABRIC_CA_SERVER_DEBUG=true
+      # client
+      - FABRIC_CA_CLIENT_TLS_CERTFILES=/tmp/hyperledger/fabric-ca/crypto/ca-cert.pem
+      - FABRIC_CA_CLIENT_HOME=/tmp/hyperledger/fabric-ca/admin
+    volumes:
+      - ./fabric-ca-server-config.yaml:/tmp/hyperledger/fabric-ca/crypto/fabric-ca-server-config.yaml
+      - ./data:/tmp/hyperledger/fabric-ca
+    working_dir: /tmp/hyperledger/fabric-ca
+    networks:
+      - ca_net
+    ports:
+      - 7052:7054

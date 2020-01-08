@@ -1,0 +1,39 @@
+version: "2"
+
+networks:
+  ca_net:
+    external: true
+
+services:
+  cli-peer1-org2:
+    container_name: cli-peer1-org2
+    image: hyperledger/fabric-tools:1.4.4
+    tty: true
+    stdin_open: true
+    environment:
+      # - SYS_CHANNEL=$SYS_CHANNEL
+      - GOPATH=/opt/gopath
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - FABRIC_LOGGING_SPEC=INFO
+      - CORE_PEER_ID=cli-peer1-org2
+      - CORE_PEER_ADDRESS=peer1-org2:9051
+      - CORE_PEER_LOCALMSPID=org2MSP
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/tmp/hyperledger/org2/peer1/tls/signcerts/tls.crt
+      - CORE_PEER_TLS_KEY_FILE=/tmp/hyperledger/org2/peer1/tls/keystore/tls.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/tmp/hyperledger/org2/peer1/tls/cacerts/ca-tls.pem
+      - CORE_PEER_MSPCONFIGPATH=/tmp/hyperledger/org2/peer1/admin/msp
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: /bin/bash
+    volumes:
+        - /var/run/:/host/var/run/
+        # Chaincode
+        - ../../../chaincode:/opt/gopath/src/github.com/chaincode
+        # TLS
+        - ./crypto/peer1/tls:/tmp/hyperledger/org2/peer1/tls
+        # Admin msp
+        - ../admin/crypto/admin/msp:/tmp/hyperledger/org2/peer1/admin/msp
+        # Artifacts
+        - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+    networks:
+      - ca_net

@@ -1,0 +1,8 @@
+*.pem
+
+tls/
+
+*.tx
+*.block
+
+!config.yaml

@@ -1,6 +1,8 @@
 *.pem
-msp/
+
 tls/
 
 *.tx
 *.block
+
+!config.yaml

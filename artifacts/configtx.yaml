@@ -22,12 +22,12 @@ Organizations:
         Policies:
             Readers:
                 Type: Signature
-                # Rule: "OR('org1MSP.admin', 'org1MSP.peer', 'org1MSP.client')"
-                Rule: "OR('org1MSP.member')"
+                Rule: "OR('org1MSP.admin', 'org1MSP.peer', 'org1MSP.client')"
+                # Rule: "OR('org1MSP.member')"
             Writers:
                 Type: Signature
-                # Rule: "OR('org1MSP.admin', 'org1MSP.client')"
-                Rule: "OR('org1MSP.member')"
+                Rule: "OR('org1MSP.admin', 'org1MSP.client')"
+                # Rule: "OR('org1MSP.member')"
             Admins:
                 Type: Signature
                 Rule: "OR('org1MSP.admin')"
@@ -42,12 +42,12 @@ Organizations:
         Policies:
             Readers:
                 Type: Signature
-                # Rule: "OR('org2MSP.admin', 'org2MSP.peer', 'org2MSP.client')"
-                Rule: "OR('org2MSP.member')"
+                Rule: "OR('org2MSP.admin', 'org2MSP.peer', 'org2MSP.client')"
+                # Rule: "OR('org2MSP.member')"
             Writers:
                 Type: Signature
-                # Rule: "OR('org2MSP.admin', 'org2MSP.client')"
-                Rule: "OR('org2MSP.member')"
+                Rule: "OR('org2MSP.admin', 'org2MSP.client')"
+                # Rule: "OR('org2MSP.member')"
             Admins:
                 Type: Signature
                 Rule: "OR('org2MSP.admin')"

@@ -20,6 +20,7 @@ services:
       - FABRIC_CA_CLIENT_TLS_CERTFILES=/tmp/hyperledger/fabric-ca/crypto/ca-cert.pem
       - FABRIC_CA_CLIENT_HOME=/tmp/hyperledger/fabric-ca/admin
     volumes:
+      - ./fabric-ca-server-config.yaml:/tmp/hyperledger/fabric-ca/crypto/fabric-ca-server-config.yaml
       - ./data:/tmp/hyperledger/fabric-ca
     working_dir: /tmp/hyperledger/fabric-ca
     networks:

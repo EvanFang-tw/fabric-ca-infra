@@ -18,6 +18,7 @@ services:
       - FABRIC_CA_SERVER_CSR_HOSTS=rca-org2
       - FABRIC_CA_SERVER_DEBUG=true
     volumes:
+      - ./fabric-ca-server-config.yaml:/tmp/hyperledger/fabric-ca/crypto/fabric-ca-server-config.yaml
       - ./data:/tmp/hyperledger/fabric-ca
     working_dir: /tmp/hyperledger/fabric-ca
     networks:
